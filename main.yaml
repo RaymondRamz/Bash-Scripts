@@ -1,0 +1,12 @@
+---
+- name: "Test playbook"
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: "System info"
+      ansible.builtin.setup:
+        filter:
+          - 'ansible_processor_cores' 
+      debug:
+        var: ansible_facts
