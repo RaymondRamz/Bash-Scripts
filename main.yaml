@@ -7,6 +7,8 @@
     - name: "System info"
       ansible.builtin.setup:
         filter:
-          - 'ansible_processor_cores' 
-        debug:
-          var: ansible_facts
+          - 'ansible_processor_cores'
+   
+    - name: "Display System Info"        
+      debug:
+        var: ansible_facts
