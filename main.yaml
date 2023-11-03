@@ -18,7 +18,7 @@
     
     - name: "Calculate Storage Info"
       set_fact:
-        total_storage_size: "{{ total_storage_size|default(0) + item.size_total }}"
+        total_storage_size: "{{ total_storage_size|default(0) | int + item.size_total | int }}"
       loop: "{{ system_info.ansible_facts.ansible_mounts }}"
 
     - name: "Display Total Storage Info"
