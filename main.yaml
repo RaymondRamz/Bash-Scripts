@@ -14,3 +14,7 @@
     - name: "Display System Info"        
       debug:
         var: ansible_facts
+    
+    - name: "Display Storage Info"
+        msg: "Mount point: {{ item.mount }}, Memory total: {{ item.size_total }}"
+      with_items: "{{ ansible_facts.ansible_mounts }}"
