@@ -9,6 +9,7 @@
         filter:
           - 'ansible_processor_cores'
           - 'ansible_memtotal_mb'
+          - 'ansible_mounts'
    
     - name: "Display System Info"        
       debug:
