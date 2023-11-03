@@ -8,5 +8,5 @@
       ansible.builtin.setup:
         filter:
           - 'ansible_processor_cores' 
-      debug:
-        var: ansible_facts
+        debug:
+          var: ansible_facts
