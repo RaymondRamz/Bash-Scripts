@@ -18,6 +18,8 @@
     
     - name: "Calculate Storage Info"
       set_fact:
+        #default sirve para crear una variable si no existe y le agrega el valor entre parentesis
+        #El siguiente pipe convierte la salida de str a int
         total_storage_size: "{{ total_storage_size|default(0) | int + item.size_total | int }}"
       loop: "{{ system_info.ansible_facts.ansible_mounts }}"
 
