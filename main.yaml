@@ -15,6 +15,14 @@
       debug:
         var: ansible_facts
     
-    - name: "Display Storage Info"
-        msg: "Mount point: {{ item.mount }}, Memory total: {{ item.size_total }}"
-      with_items: "{{ ansible_facts.ansible_mounts }}"
+    - name: "Calculate Storage Info"
+      set_fact:
+        total_storage_size: 0
+        total_storage_size: "{{ item.size_total }}"
+      loop: "{{ ansible_facts.ansible_mounts }}"
+
+    - name: "Display Total Storage Info"
+      debug:
+        var: total_storage_size
+
+
