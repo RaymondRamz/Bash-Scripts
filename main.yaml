@@ -13,5 +13,3 @@
     - name: "Display System Info"        
       debug:
         var: ansible_facts
-
-    - name: 
