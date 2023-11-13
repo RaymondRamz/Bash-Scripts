@@ -11,10 +11,9 @@
           - 'ansible_distribution_version'
           - 'ansible_distribution_release'
       register: distro_info
-
-    - name: "Display distro info"
-      debug:
-        msg: "Distribution: {{ distro_info.ansible_distribution }} ({{ distro_info.ansible_distribution_version }}) ({{ distro_info.ansible_distribution_release }})"
     
+    - name: "debug"
+      debug:
+        var: ansible_facts
 
 
