@@ -25,4 +25,4 @@
 
     - name: "Display number of filesystems"
       debug:
-        msg: "Number of Filesystems {{ system_info.ansible_facts.ansible_mounts | length }}"
+        msg: "Number of Filesystems: {{ system_info.ansible_facts.ansible_mounts | length }}"
