@@ -12,11 +12,9 @@
           - 'ansible_distribution_release'
       register: distro_info
 
-    - name: "Check if is Red Hat or Similar"
-      set_fact:
-        is_redhat: '{{ distro_info.ansible_distribution == "CentOS" }}'
-
-    - name: "Display confirmation message"
+    - name: "Display distro info"
       debug:
-        msg: "Distro is RedHat or similar"
+        msg: "Distribution: {{ distro_info.ansible_distribution }} ({{ distro_info.ansible_distribution_version }}) ({{ distro_info.ansible_distribution_release }})"
+    
+
 
