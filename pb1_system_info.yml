@@ -17,4 +17,4 @@
 
     - name: "Display memory information"
       debug:
-        msg: "Memory Total: {{ system_info.ansible_facts.ansible_memtotal_mb }}
+        msg: "Memory Total: {{ system_info.ansible_facts.ansible_memtotal_mb }}"
