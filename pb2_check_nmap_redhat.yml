@@ -10,11 +10,23 @@
           - 'ansible_distribution'
           - 'ansible_distribution_version'
           - 'ansible_distribution_release'
-          - 'ansible_distribution_file_path'
       register: distro_info
 
-    - name: "Debug info"
+    - name: "Check if is Red Hat or Similar"
+      set_fact:
+        is_redhat: "{{ distro_info.ansible_distribution in ['RedHat', 'CentOS', 'Fedora'] }}"
+
+    - name: "Gather package facts"
+      ansible.builtin.package_facts:
+        manager: rpm
+    
+    - name: "Check wheter a package called nmap is installed"
       debug:
-        var: ansible_facts
+        msg: "{{ ansible_facts.packages['nmap'] }}"
+      when: "'nmap' in ansible_facts.packages"
+
+    - name: "Display distro info"
+      debug:
+        msg: "Dstribution: {{ distro_info.ansible_distribution }} ({{ distro_info.ansible_distribution_version }}) ({{ distro_info.ansible_distribution_release }})"
   
 
