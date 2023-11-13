@@ -14,9 +14,9 @@
 
     - name: "Check if is Red Hat or Similar"
       set_fact:
-        is_redhat: "{{ distro_info.stdout.ansible_distribution in ['RedHat', 'CentOS', 'Fedora'] }}"
+        is_redhat: '{{ distro_info.ansible_distribution == "CentOS" }}'
 
-    - name: "Display distro confirmation"
+    - name: "Display confirmation message"
       debug:
-        msg: "The distribution is RedHat or similar"
+        msg: "Distro is RedHat or similar"
 
