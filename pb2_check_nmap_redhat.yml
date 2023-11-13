@@ -5,7 +5,7 @@
   gather_facts: false
   tasks:
     - name:  "Determine Linux Distro"
-      ansible.builtin.setup
+      ansible.builtin.setup:
         filter:
           - 'ansible_distribution'
           - 'ansible_distribution_version'
