@@ -13,8 +13,8 @@
 
     - name: "Display processor cores"
       debug:
-        var: system_info.ansible_processor_cores
+        var: processor_cores
 
     - name: "Display memory information"
       debug:
-        var: system_info.ansible_memtotal_mb
+        var: memtotal_mb
