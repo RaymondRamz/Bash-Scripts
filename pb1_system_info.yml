@@ -8,6 +8,7 @@
       ansible.builtin.setup:
         filter:
           - 'ansible_processor_cores'
+          - 'ansible_memtotal_mb'
       register: system_info
 
     - name: "Display processor cores"
