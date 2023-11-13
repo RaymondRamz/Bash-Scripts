@@ -25,6 +25,6 @@
 
     - name: "Display Total Storage Info"
       debug:
-        var: total_storage_size | human_readable
+        msg: "Total storage size: {{ total_storage_size | human_readable }}"
 
 
