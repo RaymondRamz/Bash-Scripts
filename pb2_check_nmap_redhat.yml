@@ -14,20 +14,5 @@
 
     - name: "Check if is Red Hat or Similar"
       set_fact:
-        is_redhat: "{{ "distro_info.ansible_distribution" in ['RedHat', 'CentOS', 'Fedora'] }}"
-        #is_redhat: "{{ distro_info.ansible_distribution == 'RedHat' or distro_info.ansible_distribution == 'CentOS' or distro_info.ansible_distribution == 'Fedora' }}"
-
-    - name: "Gather package facts"
-      ansible.builtin.package_facts:
-        manager: rpm
-    
-    - name: "Check wheter a package called nmap is installed"
-      debug:
-        msg: "{{ ansible_facts.packages['nmap'] }}"
-      when: "is_redhat"
-
-    - name: "Display distro info"
-      debug:
-        msg: "Dstribution: {{ distro_info.ansible_distribution }} ({{ distro_info.ansible_distribution_version }}) ({{ distro_info.ansible_distribution_release }})"
-  
+        is_redhat: "{{ "distro_info.stdout.ansible_distribution" in ['RedHat', 'CentOS', 'Fedora'] }}"
 
