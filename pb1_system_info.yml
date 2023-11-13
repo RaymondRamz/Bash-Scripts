@@ -4,11 +4,15 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: "System info"
+    - name: "getting system info"
       ansible.builtin.setup:
         filter:
+          #obtains cpu information
           - 'ansible_processor_cores'
+          #obtains memory information
           - 'ansible_memtotal_mb'
+          #obtains information of how many filesystem there are
+          - 'ansible_mounts'
       register: system_info
 
     - name: "Display processor cores"
@@ -18,3 +22,7 @@
     - name: "Display memory information"
       debug:
         msg: "Memory Total: {{ system_info.ansible_facts.ansible_memtotal_mb }}"
+
+    - name: "Display number of filesystems"
+      debug:
+        msg: "Number of Filesystems {{ system_info.ansible_facts.ansible_mounts | length }}"
