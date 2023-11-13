@@ -13,8 +13,8 @@
 
     - name: "Display processor cores"
       debug:
-        var: processor_cores
+        var: system_info.processor_cores
 
     - name: "Display memory information"
       debug:
-        var: memtotal_mb
+        var: system_info.memtotal_mb
