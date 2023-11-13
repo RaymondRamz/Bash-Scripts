@@ -14,8 +14,8 @@
 
     - name: "Check if is Red Hat or Similar"
       set_fact:
-        #is_redhat: "{{ distro_info.ansible_distribution in ['RedHat', 'CentOS', 'Fedora'] }}"
-        is_redhat: "{{ distro_info.ansible_distribution == 'RedHat' or distro_info.ansible_distribution == 'CentOS' or distro_info.ansible_distribution == 'Fedora' }}"
+        is_redhat: "{{ "distro_info.ansible_distribution" in ['RedHat', 'CentOS', 'Fedora'] }}"
+        #is_redhat: "{{ distro_info.ansible_distribution == 'RedHat' or distro_info.ansible_distribution == 'CentOS' or distro_info.ansible_distribution == 'Fedora' }}"
 
     - name: "Gather package facts"
       ansible.builtin.package_facts:
