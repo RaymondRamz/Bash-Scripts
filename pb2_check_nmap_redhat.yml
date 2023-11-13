@@ -1,0 +1,19 @@
+--- 
+- name: "Linux distribution information"
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name:  "Determine Linux Distro"
+      ansible.builtin.setup
+        filter:
+          - 'ansible_distribution'
+          - 'ansible_distribution_version'
+          - 'ansible_distribution_release'
+      register: distro_info
+
+    - name: "Debug info"
+      debug:
+        var: ansible_facts
+  
+
