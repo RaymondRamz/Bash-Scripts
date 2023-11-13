@@ -30,4 +30,4 @@
     
     - name: "Calculate and display total storage"
       debug:
-        msg: "Total Storage: {{ system_info.ansible_facts.ansible_mounts | map(attribute='size_total') | map('human2bytes') | sum }}"
+        msg: "Total Storage: {{ system_info.ansible_facts.ansible_mounts | map(attribute='size_total') | map('human_readable') | sum }}"
