@@ -4,7 +4,7 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: "getting system info"
+    - name: "Getting system info"
       ansible.builtin.setup:
         filter:
           #obtains cpu information
@@ -12,6 +12,7 @@
           #obtains memory information
           - 'ansible_memtotal_mb'
           #obtains information of how many filesystem there are
+          #obtains storage information
           - 'ansible_mounts'
       register: system_info
 
@@ -26,3 +27,7 @@
     - name: "Display number of filesystems"
       debug:
         msg: "Number of Filesystems: {{ system_info.ansible_facts.ansible_mounts | length }}"
+    
+    - name: "Calculate and display total storage"
+      debug:
+        msg: "Total Storage: {{ system_info.ansible_facts.ansible_mounts | map(attribute='size_total') | human_readable | sum }}"
