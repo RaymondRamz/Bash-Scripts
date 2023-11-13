@@ -21,7 +21,7 @@
 
     - name: "Display memory information"
       debug:
-        msg: "Memory Total: {{ system_info.ansible_facts.ansible_memtotal_mb | human_readable }}"
+        msg: "Total Memory: {{ system_info.ansible_facts.ansible_memtotal_mb | human_readable }}"
 
     - name: "Display number of filesystems"
       debug:
