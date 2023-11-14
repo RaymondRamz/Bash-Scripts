@@ -1,0 +1,20 @@
+---
+- name: Create 300 files
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Create test directory in /tmp
+      ansible.builtin.file:
+        path: "/tmp/test"
+        state: directory
+
+    - name: Create files with "Hello world" as a content
+      ansible.builtin.copy:
+        content: "Hello, World!"
+        dest: "/tmp/test/file{{ item }}.txt"
+      with_sequence: start=1 end=300
+
+    - name: Succesfull message
+      ansible.builtin.debug:
+        msg: "300 files have been succesfully generated in /tmp/test"
