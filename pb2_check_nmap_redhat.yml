@@ -11,11 +11,7 @@
           - 'ansible_distribution_version'
           - 'ansible_distribution_release'
       register: distro_info
-    
-    - name: "Display distribution info"
-      debug:
-        msg: "{{ - name: "Display distro info"
-      debug:
-        msg: "Distribution: {{ distro_info.stdout.ansible_distribution }} ({{ distro_info.stdout.ansible_distribution_version }}) ({{ distro_info.stdout.ansible_distribution_release }}) }}"
 
-
+    - name: "Check if is Red Hat or Similar"
+      set_fact:
+        is_redhat: "{{ distro_info.ansible_distribution.stdout in ['RedHat', 'CentOS', 'Fedora'] }}"
