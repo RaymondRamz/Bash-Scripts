@@ -4,7 +4,7 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: "Determine Distro"
+    - name: "Determine distro"
       ansible.builtin.setup:
         filter:
           - 'ansible_distribution'
@@ -12,11 +12,11 @@
           - 'ansible_distribution_release'
       #register: distro_info
 
-    - name: "Check if RedHat or similar"
+    - name: "Check if redhat or similar"
       ansible.builtin.set_fact:
         is_redhat: "{{ ansible_distribution in ['RedHat', 'CentOS', 'Fedora'] }}"
 
-    - name: If the distro is red hat or similar verify the installation of nmap
+    - name: If the distro is redhat or similar verify the installation of nmap
       ansible.builtin.package_facts:
         manager: auto
       when: is_redhat
