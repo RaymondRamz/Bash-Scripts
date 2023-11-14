@@ -16,3 +16,11 @@
       debug:
         msg: "Pretty_Name: {{ distro_info.ansible_facts.ansible_distribution }} {{ distro_info.ansible_facts.ansible_distribution_release }} {{ distro_info.ansible_facts.ansible_distribution_version }}"
       
+    - name: "Gather package facts"
+      ansible.builtin.package_facts:
+        manager: rpm
+    
+    - name: "Check whether a package called nmap is installed"
+      debug:
+        msg: "{{ ansible_facts.packages['nmap'] }}"
+      when: distro_info.ansible_facts.ansible_distribution in ['RedHat', 'CentOS', 'Fedora']
