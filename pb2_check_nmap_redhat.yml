@@ -23,10 +23,12 @@
 
     - name: Show nmap information
       ansible.builtin.debug:
-        msg: "nmap is installed on {{ ansible_distribution }}"
+        msg: "nmap is installed on {{ ansible_distribution }} 
+          {{ ansible_distribution_release }} 
+          {{ ansible_distribution_version }}"
       when: is_redhat
 
-    - name: "Display linux distro"
+    - name: "Display distro information if it is not redhat or similar"
       ansible.builtin.debug:
         msg: "Pretty_Name: 
           {{ ansible_distribution }} 
