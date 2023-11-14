@@ -16,7 +16,7 @@
       ansible.builtin.set_fact:
         is_redhat: "{{ ansible_distribution in ['RedHat', 'CentOS', 'Fedora'] }}"
 
-    - name: Verify nmap installation
+    - name: If the distro is red hat or similar verify the installation of nmap
       ansible.builtin.package_facts:
         manager: auto
       when: is_redhat
