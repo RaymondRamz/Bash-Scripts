@@ -21,7 +21,7 @@
         msg: >
           {% if is_redhat %}
             The installed RedHat or similar distro is {{ ansible_distribution }} 
-            {{ ansible_distribution_release }} {{ ansible_distribution_version }}
+            ({{ ansible_distribution_release }} {{ ansible_distribution_version }})
           {% else %}
             The installed distro is not RedHat or similar, the distro is: {{ ansible_distribution }} 
             {{ ansible_distribution_release }} {{ ansible_distribution_version }}
