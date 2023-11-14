@@ -9,13 +9,9 @@
         path: "/tmp/test"
         state: directory
 
-    - name: Get current directory
-      ansible.builtin.command: pwd
-      register: path
-
     - name: Create files with "Hello world" as a content
       ansible.builtin.template:
-        src: "{{ path.stdout }}/template.txt.j2"
+        src: "./template.txt.j2"
         dest: "/tmp/test/file{{ item }}.txt"
       with_sequence: start=1 end=300
 
