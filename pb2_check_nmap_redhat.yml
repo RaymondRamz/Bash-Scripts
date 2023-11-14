@@ -23,7 +23,7 @@
 
     - name: Show nmap information
       debug:
-        msg: "nmap is installed on {{ distribution }}"
+        msg: "nmap is installed on {{ ansible_distribution }}"
       when: is_redhat
 
     - name: "Display linux distro"
