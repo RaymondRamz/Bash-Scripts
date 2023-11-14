@@ -18,14 +18,12 @@
 
     - name: "Display distro information"
       ansible.builtin.debug:
-        msg: >
-          {% if is_redhat %}
-            The installed RedHat or similar distro is {{ ansible_distribution }} 
-            ({{ ansible_distribution_release }} {{ ansible_distribution_version }})
+        msg: 
+          "{% if is_redhat %}
+            The installed RedHat or similar distro is {{ ansible_distribution }} {{ ansible_distribution_release }} {{ ansible_distribution_version }}
           {% else %}
-            The installed distro is not RedHat or similar, the distro is: {{ ansible_distribution }} 
-            {{ ansible_distribution_release }} {{ ansible_distribution_version }}
-          {% endif %}
+            The installed distro is not RedHat or similar, the distro is: {{ ansible_distribution }} {{ ansible_distribution_release }} {{ ansible_distribution_version }}
+          {% endif %}"
 
     - name: If the distro is redhat or similar verify the installation of nmap
       ansible.builtin.package_facts:
