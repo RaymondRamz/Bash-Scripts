@@ -16,6 +16,17 @@
       ansible.builtin.set_fact:
         is_redhat: "{{ ansible_distribution in ['RedHat', 'CentOS', 'Fedora'] }}"
 
+    - name: "Display distro information"
+      ansible.builtin.debug:
+        msg: >
+          {% if is_redhat %}
+            The installed RedHat or similar distro is {{ ansible_distribution }} 
+            {{ ansible_distribution_release }} {{ ansible_distribution_version }}
+          {% else %}
+            The installed distro is not RedHat or similar, the distro is: {{ ansible_distribution }} 
+            {{ ansible_distribution_release }} {{ ansible_distribution_version }}
+          {% endif %}
+
     - name: If the distro is redhat or similar verify the installation of nmap
       ansible.builtin.package_facts:
         manager: auto
@@ -27,13 +38,5 @@
           {{ ansible_distribution_release }} 
           {{ ansible_distribution_version }}"
       when: is_redhat
-
-    - name: "Display distro information if it is not redhat or similar"
-      ansible.builtin.debug:
-        msg: "Pretty_Name: 
-          {{ ansible_distribution }} 
-          {{ ansible_distribution_release }} 
-          {{ ansible_distribution_version }}"
-      when: not is_redhat
 
   
