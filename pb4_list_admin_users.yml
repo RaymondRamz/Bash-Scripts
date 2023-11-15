@@ -29,9 +29,10 @@
         src: /etc/sudoers
       register: sudoers_file
 
-    - name: Display list of sudoers
+    - name: Filtrar líneas relevantes
       ansible.builtin.debug:
-        msg: "{{ (sudoers_file['content'] | b64decode).split('\n') }}"
+        msg: "{{ item }}"
+      loop: "{{ (sudoers_file['content'] | b64decode).split('\n') | select('regex', 'ALL=\\(ALL:ALL\\) ALL') | list }}"
 
 
       
