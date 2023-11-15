@@ -30,9 +30,13 @@
       register: sudoers_file
 
     - name: Filtrar líneas relevantes
+      ansible.builtin.shell:
+        cmd: "grep -E '^(\\S+)\\s+ALL=\\(ALL:ALL\\) ALL' /etc/sudoers"
+      register: filtered_lines
+
+    - name: Mostrar líneas filtradas
       ansible.builtin.debug:
-        msg: "{{ item }}"
-      loop: "{{ (sudoers_file['content'] | b64decode).split('\n') | select('regex_search', '^(\\S+)\\s+ALL=\\(ALL:ALL\\) ALL') | list }}"
+        msg: "{{ filtered_lines.stdout_lines }}"
 
 
 
