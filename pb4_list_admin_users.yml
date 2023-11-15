@@ -32,7 +32,7 @@
     - name: Filtrar líneas relevantes
       ansible.builtin.debug:
         msg: "{{ item }}"
-      loop: "{{ (sudoers_file['content'] | b64decode).split('\n') | select('regex', 'ALL=\\(ALL:ALL\\) ALL') | list }}"
+      loop: "{{ (sudoers_file['content'] | b64decode).split('\n') | select('regex', '^(\S+)\s+ALL=\(ALL:ALL\) ALL') | list }}"
 
 
       
