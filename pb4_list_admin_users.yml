@@ -24,14 +24,14 @@
       ansible.builtin.debug:
         msg: "{{ getent_group | list }}"
 
-    - name: Read content from /etc/sudoers
-      ansible.builtin.slurp:
-        src: /etc/sudoers
-      register: sudoers_file
-
-    - name: Display list of sudoers
-      ansible.builtin.debug:
-        msg: "{{ (sudoers_file['content'] | b64decode).split('\n') }}"
+    #- name: Read content from /etc/sudoers
+    #  ansible.builtin.slurp:
+    #    src: /etc/sudoers
+    #  register: sudoers_file
+#
+    #- name: Display list of sudoers
+    #  ansible.builtin.debug:
+    #    msg: "{{ (sudoers_file['content'] | b64decode).split('\n') }}"
 
 
       
