@@ -1,0 +1,37 @@
+---
+- name: system users and groups
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Getting system users info
+      ansible.builtin.getent:
+        database: passwd
+        split: ':'
+
+    - name: Display list of system users
+      ansible.builtin.debug:
+        msg: "{{ getent_passwd | list }}"
+
+    - name: Getting system groups info
+      ansible.builtin.getent:
+        database: group
+        split: ':'
+    #register: lgroups
+
+    - name: Display list of system groups
+      ansible.builtin.debug:
+        msg: "{{ getent_group | list }}"
+
+    #- name: Read content from /etc/sudoers
+    #  ansible.builtin.slurp:
+    #    src: /etc/sudoers
+    #  register: sudoers_file
+    
+    #- name: Display list of sudoers
+    #  ansible.builtin.debug:
+    #    msg: "{{ (sudoers_file['content'] | b64decode).split('\n') }}"
+
+
+      
