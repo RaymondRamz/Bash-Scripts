@@ -1,0 +1,34 @@
+---
+- import_playbook: pb1_system_info.yml
+- name: "CSV from pb1_system_info.yml"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "Getting system info after pb1_system_info.yml"
+      ansible.builtin.setup:
+        filter:
+          - 'ansible_processor_cores'
+          - 'ansible_memtotal_mb'
+          - 'ansible_mounts'
+      register: system_info
+
+    - name: "Write to CSV file - Processor Cores"
+      ansible.builtin.lineinfile:
+        path: ./test.csv
+        line: "{{ inventory_hostname }},Processor Cores,{{ system_info.ansible_facts.ansible_processor_cores }}"
+        create: yes
+
+    - name: "Write to CSV file - Memory Information"
+      ansible.builtin.lineinfile:
+        path: ./test.csv
+        line: "{{ inventory_hostname }},Memory Information,{{ system_info.ansible_facts.ansible_memtotal_mb | human_readable }}"
+
+    - name: "Write to CSV file - Number of Filesystems"
+      ansible.builtin.lineinfile:
+        path: ./test.csv
+        line: "{{ inventory_hostname }},Number of Filesystems,{{ system_info.ansible_facts.ansible_mounts | length }}"
+
+    - name: "Write to CSV file - Total Storage"
+      ansible.builtin.lineinfile:
+        path: ./test.csv
+        line: "{{ inventory_hostname }},Total Storage,{{ system_info.ansible_facts.ansible_mounts | map(attribute='size_total') | map('int') | sum | human_readable }}"
