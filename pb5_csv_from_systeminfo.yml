@@ -32,3 +32,7 @@
       ansible.builtin.lineinfile:
         path: ./system_info.csv
         line: "{{ inventory_hostname }},Total Storage,{{ system_info.ansible_facts.ansible_mounts | map(attribute='size_total') | map('int') | sum | human_readable }}"
+
+    - name: "Successful creation of the csv file"
+      ansible.builtin.debug:
+        msg: "System information is stored in file: system_info.csv."
