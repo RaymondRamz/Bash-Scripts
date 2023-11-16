@@ -14,21 +14,21 @@
 
     - name: "Write to CSV file - Processor Cores"
       ansible.builtin.lineinfile:
-        path: ./test.csv
+        path: ./system_info.csv
         line: "{{ inventory_hostname }},Processor Cores,{{ system_info.ansible_facts.ansible_processor_cores }}"
         create: yes
 
     - name: "Write to CSV file - Memory Information"
       ansible.builtin.lineinfile:
-        path: ./test.csv
+        path: ./system_info.csv
         line: "{{ inventory_hostname }},Memory Information,{{ system_info.ansible_facts.ansible_memtotal_mb | human_readable }}"
 
     - name: "Write to CSV file - Number of Filesystems"
       ansible.builtin.lineinfile:
-        path: ./test.csv
+        path: ./system_info.csv
         line: "{{ inventory_hostname }},Number of Filesystems,{{ system_info.ansible_facts.ansible_mounts | length }}"
 
     - name: "Write to CSV file - Total Storage"
       ansible.builtin.lineinfile:
-        path: ./test.csv
+        path: ./system_info.csv
         line: "{{ inventory_hostname }},Total Storage,{{ system_info.ansible_facts.ansible_mounts | map(attribute='size_total') | map('int') | sum | human_readable }}"
